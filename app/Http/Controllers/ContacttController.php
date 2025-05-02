@@ -16,8 +16,8 @@ class ContacttController extends Controller
 $validations = $request->validate([
 
 'name'=>'required',
-'email'=>'required',
-'message'=>'required ',
+'email'=>'required|unique:contacts,email',
+'message'=>'required',
 
 ]);
 
