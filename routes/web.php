@@ -1,13 +1,9 @@
 <?php
 
-use App\Http\Controllers\Student;
+use App\Http\Controllers\AddProducts;
+use App\Http\Controllers\AddUserscontroller;
+use App\Models\Addproduct;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ContacttController;
-use App\Http\Controllers\Students;
-
 
 
 
@@ -19,33 +15,35 @@ Route::get('/about', function (){
     return 'Yeh About Page he ';
 });
 
-// Route::get('st' ,function (){
+// Add product wala kam yaha se start he 
 
-//     return view('home');
+Route::get('addproduct', [AddProducts::class,'addproductform']);
+Route::post('addproduct', [AddProducts::class, 'handleaddproduct']);
 
-// });
-
-Route::get('welcome' , [HomeController::class, 'show']);
-
+// Add product wala kam yaha pr khtm 
 
 
-Route::get('second', [HomeController::class, 'second']);
+// yaha se adduser wala shoro he without fillable 
+
+Route::get('adduser',[AddUserscontroller::class ,'showform']);
+Route::post('adduser', [AddUserscontroller::class, 'adduser']);
+
+// yaha se adduser wala khatm he without fillable 
 
 
-Route::get('greet/{name}', [HomeController::class, 'greet']);
+// yaha se product view wala shoro he 
+Route::get('products',[AddProducts::class,'viewproducts']);
 
+// yaha se product edit  wala shoro he jo form show kreyga click hony pr  
 
-Route::get('user/{name}', [HomeController::class, 'UserProfile']);
+Route::get('Editproduct/{id}',[AddProducts::class,'editproduct']);
 
-// ye product wala contorler he 
-Route::get('product/{pr}',[ProductController::class, 'products']);
+// yaha se update wala shoro he product update hoga ye url form ka action he 
 
-// ye contact wala controle he 
-Route::get('/contact', [ContacttController::class, 'showForm']);
-Route::post('/contact', [ContacttController::class, 'handleForm']);
+Route::post('updateproduct/{id}',[Addproducts::class,'updateproduct']);
 
+// delete product wala yaha se shoro he 
 
-// yaha se students wala data insert wala shoro he 
+Route::get('Deleteproduct/{id}',[Addproducts::class,'deleteproduct']);
 
-Route::get('students', [Student::class, 'showform']);
-Route::post('students', [Student::class, 'handleform']);
+// Route::get('Deleteproduct/{id}',[Addproducts::class,'viewproducts']);
